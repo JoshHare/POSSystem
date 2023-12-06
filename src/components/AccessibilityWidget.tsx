@@ -22,22 +22,22 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
 
     const [contrast, setContrast] = useState<number>(100);
 
-    // const magnifierRef = useRef<HTMLMagnifier | null>(null);
+    const magnifierRef = useRef<HTMLMagnifier | null>(null);
 
     // // Other state and functions...
   
-    // const handleShowMagnifier = (event: React.MouseEvent<HTMLButtonElement>) => {
-    //   if (!magnifierRef.current) {
-    //     magnifierRef.current = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
-    //   }
-    //   magnifierRef.current.show(event.nativeEvent);
-    // };
+    const handleShowMagnifier = (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (!magnifierRef.current) {
+        magnifierRef.current = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
+      }
+      magnifierRef.current.show(event.nativeEvent);
+    };
 
-    // const handleHideMagnifier = () => {
-    //     if (magnifierRef.current) {
-    //         magnifierRef.current.hide();
-    //     }
-    // }
+    const handleHideMagnifier = () => {
+        if (magnifierRef.current) {
+            magnifierRef.current.hide();
+        }
+    }
   
     
     const handleInvertChange = () => {
@@ -117,7 +117,7 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
             <Paper className={styles.modalContent}>
                 <h2>Accessibility Options</h2>
                 <div className={styles.accessibilityButtons}>
-                {/* <p>Magnification</p>
+                <p>Magnification</p>
                 <Button
                 variant="contained"
                 onClick={handleShowMagnifier}
@@ -129,7 +129,7 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
                 onClick={handleHideMagnifier}
                 >
                     Hide Magnifier
-                </Button> */}
+                </Button>
                 <p>Font Size</p>
                 <Button
                 variant="contained"
