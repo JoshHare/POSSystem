@@ -9,13 +9,13 @@ interface AccessibilityWidgetProps {}
 
 const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
 
-    // const initialState = {
-    //     fontSize: typeof window !== "undefined" ? (localStorage.getItem('fontSize') as 'small' | 'medium' | 'large') || 'small' : 'small',
-    //     isInverted: typeof window !== "undefined" ? JSON.parse(localStorage.getItem('isInverted') || 'false') : false,
-    //     contrast: typeof window !== "undefined" ? parseFloat(localStorage.getItem('contrast') || '100') : 100,
-    // };
+    const initialState = {
+        fontSize: typeof window !== "undefined" ? (localStorage.getItem('fontSize') as 'small' | 'medium' | 'large') || 'small' : 'small',
+        isInverted: typeof window !== "undefined" ? JSON.parse(localStorage.getItem('isInverted') || 'false') : false,
+        contrast: typeof window !== "undefined" ? parseFloat(localStorage.getItem('contrast') || '100') : 100,
+    };
 
-    // const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('small');
+    const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('small');
     
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     // const [isInverted, setIsInverted] = useState<boolean>(false);
@@ -44,9 +44,9 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
     //     setIsInverted(!isInverted);
     // };
     
-    // const handleFontSizeChange = (e: string) => {
-    //     setFontSize(e as 'small' | 'medium' | 'large');
-    // };
+    const handleFontSizeChange = (e: string) => {
+        setFontSize(e as 'small' | 'medium' | 'large');
+    };
     
     // const handleContrastChange = (_event: Event, value: number | number[]) => {
 
@@ -103,11 +103,11 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
     //     localStorage.setItem('contrast', contrast.toString());
     // }, [isInverted, contrast]);
 
-    // useEffect(() => {
-    //     document.documentElement.style.fontSize =
-    //     fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
-    //     localStorage.setItem('fontSize', fontSize);
-    // }, [fontSize]);
+    useEffect(() => {
+        document.documentElement.style.fontSize =
+        fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
+        localStorage.setItem('fontSize', fontSize);
+    }, [fontSize]);
 
         return (
             <div className={styles.accessibilityWidget}>
@@ -116,6 +116,28 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
         </Button>
         <Modal className={styles.centerScreen} open={isModalOpen} onClose={handleCloseModal} disableScrollLock>
             <Paper className={styles.modalContent}>
+            <p>Font Size</p>
+                <Button
+                variant="contained"
+                style={{ backgroundColor: fontSize === 'small' ? '#1976D2' : 'black' }}
+                onClick={() => handleFontSizeChange('small')}
+                >
+                100%
+                </Button>
+                <Button
+                variant="contained"
+                style={{ backgroundColor: fontSize === 'medium' ? '#1976D2' : 'black' }}
+                onClick={() => handleFontSizeChange('medium')}
+                >
+                150%
+                </Button>
+                <Button
+                variant="contained"
+                style={{ backgroundColor: fontSize === 'large' ? '#1976D2' : 'black' }}
+                onClick={() => handleFontSizeChange('large')}
+                >
+                200%
+                </Button>
             {/* <h2>Accessibility Options</h2>
             <div className={styles.accessibilityButtons}>
             <p>Magnification</p>
