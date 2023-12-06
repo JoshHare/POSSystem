@@ -81,32 +81,32 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
     //     localStorage.setItem('contrast', defaultContrast.toString());
     // };
     
-    useEffect(() => {
-            setFontSize(initialState.fontSize);
-            setIsInverted(initialState.isInverted);
-            setContrast(initialState.contrast);
-    }, []);
+    // useEffect(() => {
+    //         setFontSize(initialState.fontSize);
+    //         setIsInverted(initialState.isInverted);
+    //         setContrast(initialState.contrast);
+    // }, []);
         
-    useEffect(() => {
-      return () => {
-        if (magnifierRef.current) {
-          magnifierRef.current.hide();
-          magnifierRef.current = null;
-        }
-      };
-    }, []);
+    // useEffect(() => {
+    //   return () => {
+    //     if (magnifierRef.current) {
+    //       magnifierRef.current.hide();
+    //       magnifierRef.current = null;
+    //     }
+    //   };
+    // }, []);
     
-    useEffect(() => {
-        document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
-        localStorage.setItem('isInverted', JSON.stringify(isInverted));
-        localStorage.setItem('contrast', contrast.toString());
-    }, [isInverted, contrast]);
+    // useEffect(() => {
+    //     document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
+    //     localStorage.setItem('isInverted', JSON.stringify(isInverted));
+    //     localStorage.setItem('contrast', contrast.toString());
+    // }, [isInverted, contrast]);
 
-    useEffect(() => {
-        document.documentElement.style.fontSize =
-        fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
-        localStorage.setItem('fontSize', fontSize);
-    }, [fontSize]);
+    // useEffect(() => {
+    //     document.documentElement.style.fontSize =
+    //     fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
+    //     localStorage.setItem('fontSize', fontSize);
+    // }, [fontSize]);
 
         return (
             <div className={styles.accessibilityWidget}>
@@ -201,14 +201,14 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
                         200
                     </Button>
                 </div>
-                <Slider
+                {/* <Slider
                 value={contrast}
                 onChange={handleContrastChange}
                 aria-labelledby="contrast-slider"
                 valueLabelDisplay="auto"
                 min={50}
                 max={200}
-                />
+                /> */}
                 {/* <Button variant="contained" onClick={handleResetToDefault}>
                 Reset to Default
                 </Button> */}
