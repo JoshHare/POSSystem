@@ -116,7 +116,7 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
         </Button>
         <Modal className={styles.centerScreen} open={isModalOpen} onClose={handleCloseModal} disableScrollLock>
             <Paper className={styles.modalContent}>
-            <h2>Accessibility Options</h2>
+            {/* <h2>Accessibility Options</h2>
             <div className={styles.accessibilityButtons}>
             <p>Magnification</p>
                 <Button
@@ -210,15 +210,13 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
                 min={50}
                 max={200}
                 />
-
-                {/* Reset to Default Button */}
                 <Button variant="contained" onClick={handleResetToDefault}>
                 Reset to Default
                 </Button>
             </div>
             <Button variant="contained" onClick={handleCloseModal}>
                 Close Modal
-            </Button>
+            </Button> */}
             </Paper>
         </Modal>
         </div>
