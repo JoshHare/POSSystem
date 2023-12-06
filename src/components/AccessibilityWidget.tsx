@@ -7,6 +7,7 @@ import styles from './AccessibilityWidget.module.css';
 
 interface AccessibilityWidgetProps {}
 
+let magnifierInstance: HTMLMagnifier | null = null;
 const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
 
     const initialState = {
@@ -22,20 +23,19 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
 
     const [contrast, setContrast] = useState<number>(100);
 
-    const magnifierRef = useRef<HTMLMagnifier | null>(null);
 
     // // Other state and functions...
   
     const handleShowMagnifier = (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (!magnifierRef.current) {
-        magnifierRef.current = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
-      }
-      magnifierRef.current.show(event.nativeEvent);
+        if (!magnifierInstance) {
+            magnifierInstance = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
+        }
+        magnifierInstance.show(event.nativeEvent);
     };
 
     const handleHideMagnifier = () => {
-        if (magnifierRef.current) {
-            magnifierRef.current.hide();
+        if (magnifierInstance) {
+            magnifierInstance.hide();
         }
     }
   
@@ -87,14 +87,14 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
             setContrast(initialState.contrast);
     }, []);
         
-    // useEffect(() => {
-    //   return () => {
-    //     if (magnifierRef.current) {
-    //       magnifierRef.current.hide();
-    //       magnifierRef.current = null;
-    //     }
-    //   };
-    // }, []);
+    useEffect(() => {
+      return () => {
+        if (magnifierInstance) {
+          magnifierInstance.hide();
+          magnifierInstance = null;
+        }
+      };
+    }, []);
     
     useEffect(() => {
         document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
