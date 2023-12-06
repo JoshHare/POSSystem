@@ -18,9 +18,9 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
     const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('small');
     
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    // const [isInverted, setIsInverted] = useState<boolean>(false);
+    const [isInverted, setIsInverted] = useState<boolean>(false);
 
-    // const [contrast, setContrast] = useState<number>(100);
+    const [contrast, setContrast] = useState<number>(100);
 
     // const magnifierRef = useRef<HTMLMagnifier | null>(null);
 
@@ -40,9 +40,9 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
     // }
   
     
-    // const handleInvertChange = () => {
-    //     setIsInverted(!isInverted);
-    // };
+    const handleInvertChange = () => {
+        setIsInverted(!isInverted);
+    };
     
     const handleFontSizeChange = (e: string) => {
         setFontSize(e as 'small' | 'medium' | 'large');
@@ -61,9 +61,9 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
         setIsModalOpen(false);
     };
     
-    // const handleContrastPreset = (presetValue: number) => {
-    //     setContrast(presetValue);
-    // };
+    const handleContrastPreset = (presetValue: number) => {
+        setContrast(presetValue);
+    };
     
     // const handleResetToDefault = () => {
     //     const defaultFontSize: 'small' | 'medium' | 'large' = 'small';
@@ -97,11 +97,11 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
     //   };
     // }, []);
     
-    // useEffect(() => {
-    //     document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
-    //     localStorage.setItem('isInverted', JSON.stringify(isInverted));
-    //     localStorage.setItem('contrast', contrast.toString());
-    // }, [isInverted, contrast]);
+    useEffect(() => {
+        document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
+        localStorage.setItem('isInverted', JSON.stringify(isInverted));
+        localStorage.setItem('contrast', contrast.toString());
+    }, [isInverted, contrast]);
 
     useEffect(() => {
         document.documentElement.style.fontSize =
@@ -138,6 +138,53 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
                 >
                 200%
                 </Button>
+                <p>Color Inversion</p>
+                <Button
+                variant="contained"
+                style={{ backgroundColor: isInverted ? '#1976D2' : 'black' }}
+                onClick={handleInvertChange}
+                >
+                {isInverted ? 'On' : 'Off'}
+                </Button>
+
+                <p>Contrast (current value: {contrast})</p>
+                <div>
+                    <Button
+                        variant="contained"
+                        style={{
+                        backgroundColor: contrast === 50 ? '#1976D2' : 'black',
+                        }}
+                        onClick={() => handleContrastPreset(50)}
+                    >
+                        50
+                    </Button>
+                    <Button
+                        variant="contained"
+                        style={{
+                        backgroundColor: contrast === 100 ? '#1976D2' : 'black',
+                        }}
+                        onClick={() => handleContrastPreset(100)}
+                    >
+                        100
+                    </Button>
+                    <Button
+                        variant="contained"
+                        style={{
+                        backgroundColor: contrast === 150 ? '#1976D2' : 'black',
+                        }}
+                        onClick={() => handleContrastPreset(150)}
+                    >
+                        150
+                    </Button>
+                    <Button
+                        variant="contained"
+                        style={{
+                        backgroundColor: contrast === 200 ? '#1976D2' : 'black',
+                        }}
+                        onClick={() => handleContrastPreset(200)}
+                    >
+                        200
+                    </Button>
             {/* <h2>Accessibility Options</h2>
             <div className={styles.accessibilityButtons}>
             <p>Magnification</p>
