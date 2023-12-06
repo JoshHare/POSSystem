@@ -64,28 +64,28 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
         setContrast(presetValue);
     };
     
-    // const handleResetToDefault = () => {
-    //     const defaultFontSize: 'small' | 'medium' | 'large' = 'small';
-    //     const defaultIsInverted: boolean = false;
-    //     const defaultContrast: number = 100;
+    const handleResetToDefault = () => {
+        const defaultFontSize: 'small' | 'medium' | 'large' = 'small';
+        const defaultIsInverted: boolean = false;
+        const defaultContrast: number = 100;
         
-    //     setFontSize(defaultFontSize);
-    //     setIsInverted(defaultIsInverted);
-    //     setContrast(defaultContrast);
+        setFontSize(defaultFontSize);
+        setIsInverted(defaultIsInverted);
+        setContrast(defaultContrast);
         
-    //     document.documentElement.style.filter = 'invert(0) contrast(100%)';
-    //     fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
+        document.documentElement.style.filter = 'invert(0) contrast(100%)';
+        fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
         
-    //     localStorage.setItem('fontSize', defaultFontSize);
-    //     localStorage.setItem('isInverted', JSON.stringify(defaultIsInverted));
-    //     localStorage.setItem('contrast', defaultContrast.toString());
-    // };
+        localStorage.setItem('fontSize', defaultFontSize);
+        localStorage.setItem('isInverted', JSON.stringify(defaultIsInverted));
+        localStorage.setItem('contrast', defaultContrast.toString());
+    };
     
-    // useEffect(() => {
-    //         setFontSize(initialState.fontSize);
-    //         setIsInverted(initialState.isInverted);
-    //         setContrast(initialState.contrast);
-    // }, []);
+    useEffect(() => {
+            setFontSize(initialState.fontSize);
+            setIsInverted(initialState.isInverted);
+            setContrast(initialState.contrast);
+    }, []);
         
     // useEffect(() => {
     //   return () => {
@@ -209,9 +209,9 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
                 min={50}
                 max={200}
                 />
-                {/* <Button variant="contained" onClick={handleResetToDefault}>
+                <Button variant="contained" onClick={handleResetToDefault}>
                 Reset to Default
-                </Button> */}
+                </Button>
             </div>
             <Button variant="contained" onClick={handleCloseModal}>
                 Close Modal
