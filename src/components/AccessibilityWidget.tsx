@@ -22,22 +22,22 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
 
     const [contrast, setContrast] = useState<number>(100);
 
-    const magnifierRef = useRef<HTMLMagnifier | null>(null);
+    // const magnifierRef = useRef<HTMLMagnifier | null>(null);
 
     // // Other state and functions...
   
-    const handleShowMagnifier = (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (!magnifierRef.current) {
-        magnifierRef.current = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
-      }
-      magnifierRef.current.show(event.nativeEvent);
-    };
+    // const handleShowMagnifier = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //   if (!magnifierRef.current) {
+    //     magnifierRef.current = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
+    //   }
+    //   magnifierRef.current.show(event.nativeEvent);
+    // };
 
-    const handleHideMagnifier = () => {
-        if (magnifierRef.current) {
-            magnifierRef.current.hide();
-        }
-    }
+    // const handleHideMagnifier = () => {
+    //     if (magnifierRef.current) {
+    //         magnifierRef.current.hide();
+    //     }
+    // }
   
     
     const handleInvertChange = () => {
@@ -96,17 +96,17 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
     //   };
     // }, []);
     
-    // useEffect(() => {
-    //     document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
-    //     localStorage.setItem('isInverted', JSON.stringify(isInverted));
-    //     localStorage.setItem('contrast', contrast.toString());
-    // }, [isInverted, contrast]);
+    useEffect(() => {
+        document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
+        localStorage.setItem('isInverted', JSON.stringify(isInverted));
+        localStorage.setItem('contrast', contrast.toString());
+    }, [isInverted, contrast]);
 
-    // useEffect(() => {
-    //     document.documentElement.style.fontSize =
-    //     fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
-    //     localStorage.setItem('fontSize', fontSize);
-    // }, [fontSize]);
+    useEffect(() => {
+        document.documentElement.style.fontSize =
+        fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
+        localStorage.setItem('fontSize', fontSize);
+    }, [fontSize]);
 
         return (
             <div className={styles.accessibilityWidget}>
@@ -115,9 +115,9 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
         </Button>
         <Modal className={styles.centerScreen} open={isModalOpen} onClose={handleCloseModal} disableScrollLock>
             <Paper className={styles.modalContent}>
-            <h2>Accessibility Options</h2>
-            <div className={styles.accessibilityButtons}>
-            <p>Magnification</p>
+                <h2>Accessibility Options</h2>
+                <div className={styles.accessibilityButtons}>
+                {/* <p>Magnification</p>
                 <Button
                 variant="contained"
                 onClick={handleShowMagnifier}
@@ -129,7 +129,7 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
                 onClick={handleHideMagnifier}
                 >
                     Hide Magnifier
-                </Button>
+                </Button> */}
                 <p>Font Size</p>
                 <Button
                 variant="contained"
@@ -201,14 +201,14 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
                         200
                     </Button>
                 </div>
-                {/* <Slider
+                <Slider
                 value={contrast}
                 onChange={handleContrastChange}
                 aria-labelledby="contrast-slider"
                 valueLabelDisplay="auto"
                 min={50}
                 max={200}
-                /> */}
+                />
                 {/* <Button variant="contained" onClick={handleResetToDefault}>
                 Reset to Default
                 </Button> */}
