@@ -1,7 +1,7 @@
 "use client"
 // AccessibilityWidget.tsx
-import React, { useState, useEffect, useRef } from 'react';
-import { Modal, Paper, Button, Slider, Input } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Modal, Paper, Button, Slider } from '@mui/material';
 import HTMLMagnifier from './html-magnifier'; // Assuming you have the HTMLMagnifier class in a separate file
 import styles from './AccessibilityWidget.module.css';
 
@@ -23,14 +23,13 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
 
     const [contrast, setContrast] = useState<number>(100);
 
-
     // // Other state and functions...
   
-    const handleShowMagnifier = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleShowMagnifier = () => {
         if (!magnifierInstance) {
             magnifierInstance = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
         }
-        magnifierInstance.show(event.nativeEvent);
+        magnifierInstance.show();
     };
 
     const handleHideMagnifier = () => {
@@ -38,7 +37,6 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
             magnifierInstance.hide();
         }
     }
-  
     
     const handleInvertChange = () => {
         setIsInverted(!isInverted);
