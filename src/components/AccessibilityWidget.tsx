@@ -9,49 +9,49 @@ interface AccessibilityWidgetProps {}
 
 const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
 
-    const initialState = {
-        fontSize: typeof window !== "undefined" ? (localStorage.getItem('fontSize') as 'small' | 'medium' | 'large') || 'small' : 'small',
-        isInverted: typeof window !== "undefined" ? JSON.parse(localStorage.getItem('isInverted') || 'false') : false,
-        contrast: typeof window !== "undefined" ? parseFloat(localStorage.getItem('contrast') || '100') : 100,
-    };
+    // const initialState = {
+    //     fontSize: typeof window !== "undefined" ? (localStorage.getItem('fontSize') as 'small' | 'medium' | 'large') || 'small' : 'small',
+    //     isInverted: typeof window !== "undefined" ? JSON.parse(localStorage.getItem('isInverted') || 'false') : false,
+    //     contrast: typeof window !== "undefined" ? parseFloat(localStorage.getItem('contrast') || '100') : 100,
+    // };
 
-    const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('small');
+    // const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('small');
     
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [isInverted, setIsInverted] = useState<boolean>(false);
+    // const [isInverted, setIsInverted] = useState<boolean>(false);
 
-    const [contrast, setContrast] = useState<number>(100);
+    // const [contrast, setContrast] = useState<number>(100);
 
-    const magnifierRef = useRef<HTMLMagnifier | null>(null);
+    // const magnifierRef = useRef<HTMLMagnifier | null>(null);
 
-    // Other state and functions...
+    // // Other state and functions...
   
-    const handleShowMagnifier = (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (!magnifierRef.current) {
-        magnifierRef.current = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
-      }
-      magnifierRef.current.show(event.nativeEvent);
-    };
+    // const handleShowMagnifier = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //   if (!magnifierRef.current) {
+    //     magnifierRef.current = new HTMLMagnifier({ zoom: 2, shape: 'circle', width: 200, height: 200 });
+    //   }
+    //   magnifierRef.current.show(event.nativeEvent);
+    // };
 
-    const handleHideMagnifier = () => {
-        if (magnifierRef.current) {
-            magnifierRef.current.hide();
-        }
-    }
+    // const handleHideMagnifier = () => {
+    //     if (magnifierRef.current) {
+    //         magnifierRef.current.hide();
+    //     }
+    // }
   
     
-    const handleInvertChange = () => {
-        setIsInverted(!isInverted);
-    };
+    // const handleInvertChange = () => {
+    //     setIsInverted(!isInverted);
+    // };
     
-    const handleFontSizeChange = (e: string) => {
-        setFontSize(e as 'small' | 'medium' | 'large');
-    };
+    // const handleFontSizeChange = (e: string) => {
+    //     setFontSize(e as 'small' | 'medium' | 'large');
+    // };
     
-    const handleContrastChange = (_event: Event, value: number | number[]) => {
+    // const handleContrastChange = (_event: Event, value: number | number[]) => {
 
-        setContrast(value as number);
-    };
+    //     setContrast(value as number);
+    // };
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
@@ -61,26 +61,26 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
         setIsModalOpen(false);
     };
     
-    const handleContrastPreset = (presetValue: number) => {
-        setContrast(presetValue);
-    };
+    // const handleContrastPreset = (presetValue: number) => {
+    //     setContrast(presetValue);
+    // };
     
-    const handleResetToDefault = () => {
-        const defaultFontSize: 'small' | 'medium' | 'large' = 'small';
-        const defaultIsInverted: boolean = false;
-        const defaultContrast: number = 100;
+    // const handleResetToDefault = () => {
+    //     const defaultFontSize: 'small' | 'medium' | 'large' = 'small';
+    //     const defaultIsInverted: boolean = false;
+    //     const defaultContrast: number = 100;
         
-        setFontSize(defaultFontSize);
-        setIsInverted(defaultIsInverted);
-        setContrast(defaultContrast);
+    //     setFontSize(defaultFontSize);
+    //     setIsInverted(defaultIsInverted);
+    //     setContrast(defaultContrast);
         
-        document.documentElement.style.filter = 'invert(0) contrast(100%)';
-        fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
+    //     document.documentElement.style.filter = 'invert(0) contrast(100%)';
+    //     fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
         
-        localStorage.setItem('fontSize', defaultFontSize);
-        localStorage.setItem('isInverted', JSON.stringify(defaultIsInverted));
-        localStorage.setItem('contrast', defaultContrast.toString());
-    };
+    //     localStorage.setItem('fontSize', defaultFontSize);
+    //     localStorage.setItem('isInverted', JSON.stringify(defaultIsInverted));
+    //     localStorage.setItem('contrast', defaultContrast.toString());
+    // };
     
     // useEffect(() => {
         //     setFontSize(initialState.fontSize);
