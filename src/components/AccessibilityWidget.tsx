@@ -185,6 +185,7 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
                     >
                         200
                     </Button>
+                    </div>
             {/* <h2>Accessibility Options</h2>
             <div className={styles.accessibilityButtons}>
             <p>Magnification</p>
