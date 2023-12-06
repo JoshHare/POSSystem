@@ -12,8 +12,6 @@ export default function Home() {
 
     return (
         <>
-            
-            
             <div className={styles.main}>
                 <div className = {styles.content}>
                 {session && <h1 className={styles.user}>Welcome, {session?.user?.name}!</h1>}

@@ -39,35 +39,15 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
         }
     }
   
-    useEffect(() => {
-      return () => {
-        if (magnifierRef.current) {
-          magnifierRef.current.hide();
-          magnifierRef.current = null;
-        }
-      };
-    }, []);
     
-    useEffect(() => {
-        document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
-        localStorage.setItem('isInverted', JSON.stringify(isInverted));
-        localStorage.setItem('contrast', contrast.toString());
-    }, [isInverted, contrast]);
-
-    useEffect(() => {
-        document.documentElement.style.fontSize =
-        fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
-        localStorage.setItem('fontSize', fontSize);
-    }, [fontSize]);
-
     const handleInvertChange = () => {
         setIsInverted(!isInverted);
     };
-
+    
     const handleFontSizeChange = (e: string) => {
         setFontSize(e as 'small' | 'medium' | 'large');
     };
-
+    
     const handleContrastChange = (_event: Event, value: number | number[]) => {
 
         setContrast(value as number);
@@ -76,40 +56,61 @@ const AccessibilityWidget: React.FC<AccessibilityWidgetProps> = () => {
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
-
+    
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
-
+    
     const handleContrastPreset = (presetValue: number) => {
         setContrast(presetValue);
     };
-
+    
     const handleResetToDefault = () => {
         const defaultFontSize: 'small' | 'medium' | 'large' = 'small';
         const defaultIsInverted: boolean = false;
         const defaultContrast: number = 100;
-
+        
         setFontSize(defaultFontSize);
         setIsInverted(defaultIsInverted);
         setContrast(defaultContrast);
-
+        
         document.documentElement.style.filter = 'invert(0) contrast(100%)';
         fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
-
+        
         localStorage.setItem('fontSize', defaultFontSize);
         localStorage.setItem('isInverted', JSON.stringify(defaultIsInverted));
         localStorage.setItem('contrast', defaultContrast.toString());
     };
+    
+    // useEffect(() => {
+        //     setFontSize(initialState.fontSize);
+        //     setIsInverted(initialState.isInverted);
+        //     setContrast(initialState.contrast);
+    // }, []);
+        
+    // useEffect(() => {
+    //   return () => {
+    //     if (magnifierRef.current) {
+    //       magnifierRef.current.hide();
+    //       magnifierRef.current = null;
+    //     }
+    //   };
+    // }, []);
+    
+    // useEffect(() => {
+    //     document.documentElement.style.filter = `invert(${isInverted ? 1 : 0}) contrast(${contrast}%)`;
+    //     localStorage.setItem('isInverted', JSON.stringify(isInverted));
+    //     localStorage.setItem('contrast', contrast.toString());
+    // }, [isInverted, contrast]);
 
-    useEffect(() => {
-        setFontSize(initialState.fontSize);
-        setIsInverted(initialState.isInverted);
-        setContrast(initialState.contrast);
-    }, []);
+    // useEffect(() => {
+    //     document.documentElement.style.fontSize =
+    //     fontSize === 'small' ? '15px' : fontSize === 'large' ? '30px' : '25px';
+    //     localStorage.setItem('fontSize', fontSize);
+    // }, [fontSize]);
 
-    return (
-        <div className={styles.accessibilityWidget}>
+        return (
+            <div className={styles.accessibilityWidget}>
         <Button variant="contained" onClick={handleOpenModal}>
             Accessibility Options
         </Button>

@@ -38,7 +38,7 @@ export default function Navbar() {
     return (
     <>
     <div className={styles.navWidgets}>
-        {/* <AccessibilityWidget /> */}
+        <AccessibilityWidget />
         <WeatherWidget />
     </div>
     <AppBar position="static" className={styles.navbar}>
